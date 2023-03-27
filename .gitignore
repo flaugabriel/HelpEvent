@@ -11,6 +11,7 @@ helpevent-api/public/javascripts/*
 helpevent-api/public/storage/*
 helpevent-api/public/version
 helpevent-client/node_modules
+node_modules
 coverage
 
 #VScode

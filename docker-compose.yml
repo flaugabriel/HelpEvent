@@ -12,8 +12,8 @@ services:
   helpevent-api: &helpevent-api
     container_name: helpevent-api/
     build:
-      context: helpevent-api/
-      dockerfile: helpevent-api/DockerFile
+      context: ./helpevent-api
+      dockerfile: ./helpevent-api/DockerFile
     tty: true
     command: bash start.sh
     volumes:
@@ -28,8 +28,8 @@ services:
   helpevent-client: &helpevent-client
     container_name: helpevent-client
     build:
-      context: helpevent-client/
-      dockerfile: helpevent-client/DockerFile
+      context: ./helpevent-client
+      dockerfile: ./helpevent-client/DockerFile
     command: bash start-client.sh
     tty: true
     stdin_open: true

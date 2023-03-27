@@ -1,0 +1,36 @@
+helpevent-api/.bundle
+/.project
+helpevent-api/db/*.sqlite3
+helpevent-api/db/*.sqlite3-journal
+helpevent-api/log/*.log
+helpevent-api/tmp/**/*
+helpevent-api/public/uploads/*
+helpevent-api/fig.yml
+helpevent-api/public/file_storage/
+helpevent-api/public/javascripts/*
+helpevent-api/public/storage/*
+helpevent-api/public/version
+helpevent-client/node_modules
+coverage
+
+#VScode
+.vscode/
+
+#Swap file vim
+.*.swp
+
+# RVM gemset name
+.ruby-gemset
+
+.byebug_history
+
+# Ignore IntelliJ’s project specific settings folder
+.idea/
+./helpevent-api/.idea
+./helpevent-client/.idea
+./helpevent-api/.vscode/
+./helpevent-client/.vscode/
+
+# Auto generated ERD file
+# vscode
+.vscode

@@ -1,0 +1,41 @@
+version: "3"
+
+services:
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USERNAME=postgres
+    ports:
+      - "5432:5432"
+
+  helpevent-api: &helpevent-api
+    container_name: helpevent-api/
+    build:
+      context: helpevent-api/
+      dockerfile: helpevent-api/DockerFile
+    tty: true
+    command: bash start.sh
+    volumes:
+      - .:/helpevent-client
+    ports:
+      - 3030:3030
+    depends_on:
+      - db
+    links:
+      - db
+
+  helpevent-client: &helpevent-client
+    container_name: helpevent-client
+    build:
+      context: helpevent-client/
+      dockerfile: helpevent-client/DockerFile
+    command: bash start-client.sh
+    tty: true
+    stdin_open: true
+    volumes:
+      - .:/helpevent-api
+    ports:
+      - 3000:3000
+    depends_on:
+      - helpevent-api

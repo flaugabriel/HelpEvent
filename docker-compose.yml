@@ -10,14 +10,11 @@ services:
       - "5432:5432"
 
   helpevent-api: &helpevent-api
-    container_name: helpevent-api/
-    build:
-      context: ./helpevent-api
-      dockerfile: ./helpevent-api/DockerFile
+    build: helpevent-api
     tty: true
     command: bash start.sh
     volumes:
-      - .:/helpevent-client
+      - ./helpevent-api:/helpevent-api
     ports:
       - 3030:3030
     depends_on:
@@ -26,15 +23,12 @@ services:
       - db
 
   helpevent-client: &helpevent-client
-    container_name: helpevent-client
-    build:
-      context: ./helpevent-client
-      dockerfile: ./helpevent-client/DockerFile
+    build: helpevent-client
     command: bash start-client.sh
     tty: true
     stdin_open: true
     volumes:
-      - .:/helpevent-api
+      - ./helpevent-client:/var/www/html
     ports:
       - 3000:3000
     depends_on:

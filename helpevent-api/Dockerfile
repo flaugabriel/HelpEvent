@@ -2,7 +2,7 @@ FROM ruby:3.2.1
 
 ENV PORT 3030
 EXPOSE 3030
-ENV APP_HOME /web
+ENV APP_HOME /helpevent-api
 
 RUN apt-get update -qq
 

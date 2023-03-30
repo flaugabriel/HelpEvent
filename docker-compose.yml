@@ -22,6 +22,7 @@ services:
       - db
     links:
       - db
+      - mailcatcher
 
   helpevent-client: &helpevent-client
     build: helpevent-client
@@ -34,3 +35,9 @@ services:
       - 3000:3000
     depends_on:
       - helpevent-api
+  
+  mailcatcher:
+    image: yappabe/mailcatcher
+    ports:
+      - "1025:1025"
+      - "1080:1080"

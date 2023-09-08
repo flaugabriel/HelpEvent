@@ -1,5 +1,5 @@
-class API::V1::ItemsController < ApiController
-  before_action :set_item, only: %i[ show update destroy ]
+class Api::V1::ItemsController < ApiController
+  before_action :set_item, only: %i[show update destroy]
 
   def index
     item = Item.all.order('updated_at desc')

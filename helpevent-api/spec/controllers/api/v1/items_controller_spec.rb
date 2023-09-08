@@ -1,10 +1,9 @@
 require 'rails_helper'
 
-
-RSpec.describe API::V1::ItemsController, type: :controller do
-  describe "GET #index" do
-    it "returns a success response" do
-      item = Item.create! valid_attributes
+RSpec.describe Api::V1::ItemsController, type: :controller do
+  describe 'GET #index' do
+    it 'returns a success response' do
+      # item = Item.create! valid_attributes
       get :index, params: {}, session: valid_session
       expect(response).to be_successful
     end
@@ -67,24 +66,23 @@ RSpec.describe API::V1::ItemsController, type: :controller do
       end
     end
 
-    context "with invalid params" do
-      it "renders a JSON response with errors for the item" do
+    context 'with invalid params' do
+      it 'renders a JSON response with errors for the item' do
         item = Item.create! valid_attributes
 
-        put :update, params: {id: item.to_param, item: invalid_attributes}, session: valid_session
+        put :update, params: { id: item.to_param, item: invalid_attributes }, session: valid_session
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to eq('application/json')
       end
     end
   end
 
-  describe "DELETE #destroy" do
-    it "destroys the requested item" do
+  describe 'DELETE #destroy' do
+    it 'destroys the requested item' do
       item = Item.create! valid_attributes
-      expect {
-        delete :destroy, params: {id: item.to_param}, session: valid_session
-      }.to change(Item, :count).by(-1)
+      expect do
+        delete :destroy, params: { id: item.to_param }, session: valid_session
+      end.to change(Item, :count).by(-1)
     end
   end
-
 end

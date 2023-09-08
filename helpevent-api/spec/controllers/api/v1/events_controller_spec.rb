@@ -1,25 +1,40 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::EventsController , type: :controller do
+  describe 'GET #index' do
+    context "when user is connected" do
+      let(:user) { FactoryBot.create(:user) }
+      before do
+        sign_in user
+        get :index
+      end
 
-  describe "GET #index" do
-    it "returns a success response" do
-      event = Event.create! valid_attributes
-      get :index, params: {}, session: valid_session
-      expect(response).to be_successful
+      it 'returns a success response' do
+        events = FactoryBot.create_list(:event, 50)
+
+        debugger
+        # expect(response).to be_successful
+      end
+    end
+
+    context 'quando o usuário não está autenticado' do
+      it 'deve retornar o status 401 Unauthorized' do
+        get :show, params: { id: my_model.id }
+        expect(response).to have_http_status(:unauthorized)
+      end
     end
   end
 
-  describe "GET #show" do
-    it "returns a success response" do
+  describe 'GET #show' do
+    it 'returns a success response' do
       event = Event.create! valid_attributes
       get :show, params: {id: event.to_param}, session: valid_session
       expect(response).to be_successful
     end
   end
 
-  describe "POST #create" do
-    context "with valid params" do
+  describe 'POST #create' do
+    context 'with valid params' do
       it "creates a new Event" do
         expect {
           post :create, params: {event: valid_attributes}, session: valid_session

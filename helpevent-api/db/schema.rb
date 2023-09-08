@@ -15,7 +15,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_28_053721) do
   enable_extension "plpgsql"
 
   create_table "events", force: :cascade do |t|
-    t.string "name"
+    t.string "title"
     t.decimal "total_price"
     t.datetime "event_data"
     t.datetime "created_at", null: false

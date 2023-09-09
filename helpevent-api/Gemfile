@@ -32,6 +32,8 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'shoulda-matchers', require: false
   gem 'factory_bot_rails'
+  gem 'rspec-support'
+  gem 'simplecov'
   gem 'faker'
   gem 'listen', '~> 3.3'
   gem 'spring'

@@ -1,0 +1,49 @@
+require:
+  - rubocop-performance
+  - rubocop-rspec
+  - rubocop-rails
+
+AllCops:
+  NewCops: enable
+  Exclude:
+    - 'bin/**/*'
+    - 'db/migrate/*'
+    - 'lib/**/*'
+    - 'test/**/*'
+    - 'db/schema.rb'
+    - 'config/**/*'
+    - 'config.ru'
+    - 'db/seeds.rb'
+    - 'spec/rails_helper.rb'
+    - 'spec/spec_helper.rb'
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Metrics/MethodLength:
+  Enabled: true
+  Max: 50
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Rails/Validation:
+  Enabled: false
+
+Rails/InverseOf:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Enabled: false
+
+RSpec/Rails/InferredSpecType:
+  Enabled: false
+
+Rails/UniqueValidationWithoutIndex:
+  Enabled: false

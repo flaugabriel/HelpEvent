@@ -8,11 +8,11 @@ include ActionController::RespondWith
 
 describe 'Whether access is ocurring properly', type: :request do
   before(:each) do
-    @current_user = FactoryBot.create(:user)
+    @current_user = FactoryBot.create(:confirmed_user)
     @event = FactoryBot.create(:event)
   end
 
-  context 'context: general authentication via API, ' do
+  context 'general authentication via API, ' do
     it "doesn't give you anything if you don't log in" do
       get api_events_path(@event)
       expect(response.status).to eq(401)
@@ -42,5 +42,12 @@ describe 'Whether access is ocurring properly', type: :request do
       get api_event_path(new_event.id), headers: auth_params
       expect(response).not_to have_http_status(:success)
     end
+  end
+
+  context 'when signed out' do
+    it 'should respond with unauthorized' do
+      get api_auth_validate_token_path
+      expect(response).to have_http_status(:unauthorized)
+    end 
   end
 end

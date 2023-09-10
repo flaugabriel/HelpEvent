@@ -25,5 +25,15 @@ FactoryBot.define do
         create_list(:event, evaluator.events_count, user: user)
       end
     end
+
+    factory :user_with_itens do
+      transient do 
+        itens_count { 5 }
+      end
+
+      after(:create) do |user, evaluator|
+        create_list(:item, evaluator.itens_count, user: user)
+      end
+    end
   end
 end

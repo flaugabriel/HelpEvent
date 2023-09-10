@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
       resources :events
       resources :items
+      get 'users/show', to: 'users#show'
       get 'myaccount/profile', to: 'myaccount#profile'
     end
 

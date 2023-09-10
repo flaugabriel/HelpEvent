@@ -11,8 +11,14 @@ FactoryBot.define do
       confirmed_at { Time.now } 
     end
 
-    factory :user_without_uid do
-      uid { ' ' } 
+    factory :user_with_events do
+      transient do 
+        events_count { 5 }
+      end
+
+      after(:create) do |user, evaluator|
+        create_list(:event, evaluator.events_count, user: user)
+      end
     end
   end
 end

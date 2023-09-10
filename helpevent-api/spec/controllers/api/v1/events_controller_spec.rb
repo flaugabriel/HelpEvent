@@ -1,14 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::EventsController , type: :controller do
+  let(:user) { create :user }
+  let(:valid_headers) do
+    user.create_new_auth_token.merge('Accept' => 'application/app.helpevent.com') 
+  end
+  let(:invalid_headers) do
+    {'Accept' => 'application/app.helpevent.com.br'} 
+  end
+
   describe 'GET #index' do
     context "when user is connected" do
-      let(:user) { FactoryBot.create(:user) }
-      before do
-        sign_in user
-        get :index
-      end
-
       it 'returns a success response' do
         events = FactoryBot.create_list(:event, 50)
 

@@ -5,7 +5,14 @@ FactoryBot.define do
     event_data { Faker::Date.between_except(from: 5.year.ago, to: 1.year.from_now, excepted: Date.today) }
 
     factory :invalid_event do
-      title { nil } 
+      title { nil }
+      user { FactoryBot.create(:user) } 
     end
+
+    factory :event_users do
+      user { FactoryBot.create(:user) } 
+    end
+
+    user
   end
 end

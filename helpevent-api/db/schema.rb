@@ -10,9 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_28_053721) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_10_032738) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "event_items", force: :cascade do |t|
+    t.integer "status"
+    t.integer "quantities"
+    t.bigint "event_id", null: false
+    t.bigint "item_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_event_items_on_event_id"
+    t.index ["item_id"], name: "index_event_items_on_item_id"
+  end
+
+  create_table "event_users", force: :cascade do |t|
+    t.boolean "admin"
+    t.bigint "event_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_event_users_on_event_id"
+    t.index ["user_id"], name: "index_event_users_on_user_id"
+  end
 
   create_table "events", force: :cascade do |t|
     t.string "title"
@@ -20,6 +41,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_28_053721) do
     t.datetime "event_data"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_events_on_user_id"
   end
 
   create_table "items", force: :cascade do |t|
@@ -62,5 +85,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_28_053721) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
+  add_foreign_key "event_items", "events"
+  add_foreign_key "event_items", "items"
+  add_foreign_key "event_users", "events"
+  add_foreign_key "event_users", "users"
+  add_foreign_key "events", "users"
   add_foreign_key "items", "users"
 end

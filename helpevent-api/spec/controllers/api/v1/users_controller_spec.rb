@@ -14,7 +14,7 @@ RSpec.describe Api::V1::UsersController, type: :request do
     context "when user exist " do
       it "returns a user and success response status 200" do
         get api_users_show_path, params: { id: 1 }, headers: valid_headers
-        expect(json['nickname']).to eq('test') 
+        expect(json['id']).to eq(1) 
         expect(response.status).to eq(200)  
       end
     end

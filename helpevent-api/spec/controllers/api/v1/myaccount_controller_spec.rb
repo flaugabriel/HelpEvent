@@ -13,7 +13,7 @@ RSpec.describe Api::V1::MyaccountController, type: :request do
     context 'when user is authenticated' do
       it 'return the current user and status 200' do
         get api_myaccount_profile_path, headers: valid_headers
-        expect(json['data']['nickname']).to eq('test') 
+        expect(json['data']['nickname']).to eq(user.nickname) 
         expect(response.status).to eq(200)  
       end
     end

@@ -4,12 +4,12 @@ FactoryBot.define do
     total_price { Faker::Commerce.price(range: 0..10000) }
     event_data { Faker::Date.between_except(from: 5.year.ago, to: 1.year.from_now, excepted: Date.today) }
 
-    factory :invalid_event do
+    trait :invalid_event do
       title { nil }
       user { FactoryBot.create(:user) } 
     end
 
-    factory :event_users do
+    trait :event_users do
       user { FactoryBot.create(:user) } 
     end
 

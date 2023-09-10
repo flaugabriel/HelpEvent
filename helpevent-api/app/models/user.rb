@@ -12,4 +12,5 @@ class User < ActiveRecord::Base
   has_many :itens
   
   validates_uniqueness_of :email
+  validates_uniqueness_of :nickname
 end

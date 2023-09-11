@@ -34,12 +34,12 @@ jobs:
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
-        working-directory: ./helpevent-api
         with:
           ruby-version: 3.0.4
           bundler-cache: true
 
       - name: Install dependencies
+        working-directory: ./helpevent-api
         run: |
           sudo apt-get update && sudo apt-get -yqq install libpq-dev
           bundle install --jobs 4 --retry 3

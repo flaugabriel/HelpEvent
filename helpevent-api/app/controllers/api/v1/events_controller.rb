@@ -32,7 +32,9 @@ class Api::V1::EventsController < ApiController
   end
 
   def destroy
-    @event.destroy
+     return json_error_response('Eventos não removido!', :not_found) unless @event.present?
+
+    render json: @event, each_serializer: Api::V1::EventSerializer, status: :ok
   end
 
   private

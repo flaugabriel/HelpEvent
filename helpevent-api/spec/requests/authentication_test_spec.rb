@@ -8,12 +8,12 @@ include ActionController::RespondWith
 
 describe 'Whether access is ocurring properly', type: :request do
   before(:each) do
-    @current_user = FactoryBot.create(:confirmed_user)
+    @current_user = FactoryBot.create(:user, :confirmed_user)
     @event = FactoryBot.create(:event)
   end
 
   context 'general authentication via API, ' do
-    it "doesn't give you anything if you don't log in" do
+    it "doesn't give you anything if you don't login" do
       get api_events_path(@event)
       expect(response.status).to eq(401)
     end

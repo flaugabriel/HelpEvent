@@ -1,5 +1,6 @@
 class Event < ApplicationRecord
   has_many :event_users
+  has_many :event_itens
   belongs_to :user
 
   validates :title, presence: true, length: { maximum: 50, minimum: 3 }, uniqueness: { case_sensitive: false }
@@ -13,10 +14,6 @@ class Event < ApplicationRecord
       item_array << item.item_id
     end
     Item.where(user_id: current_user).where.not(id: item_array)
-  end
-
-  def select_item_by_events(event_id)
-    EventItem.where(event_id: event_id)
   end
 
   def delete_event_by_admin(id)

@@ -1,10 +1,11 @@
 class Api::V1::EventsController < ApiController
   before_action :set_event, only: %i[show update destroy]
+  before_action :merge_user_on_event_create, only: %i[create]
 
   def index
     events = Event.all.order('updated_at desc')
 
-    return json_error_response('Eventos não encontrado!', :not_found) unless events.present?
+    return json_error_response('Eventos não encontrado!', :not_found, 404) unless events.present?
 
     render json: events, each_serializer: Api::V1::EventSerializer, status: :ok
   end
@@ -14,13 +15,11 @@ class Api::V1::EventsController < ApiController
   end
 
   def create
-    event = Event.new(event_params)
+    event = Event.new(merge_user_on_event_create)
 
-    if event.save
-      render json: events, each_serializer: Api::V1::EventSerializer, status: :ok
-    else
-      json_error_response(event.errors.full_mensager, :not_found) unless events.present?
-    end
+    return json_error_response(event.errors.full_messages, :not_implemented, 501) unless event.save
+
+    render json: event, each_serializer: Api::V1::EventSerializer, status: :ok
   end
 
   def update
@@ -32,12 +31,16 @@ class Api::V1::EventsController < ApiController
   end
 
   def destroy
-     return json_error_response('Eventos não removido!', :not_found) unless @event.present?
+     return json_error_response('Evento não removido!', :not_implemented, 501) unless @event.present?
 
     render json: @event, each_serializer: Api::V1::EventSerializer, status: :ok
   end
 
   private
+
+  def merge_user_on_event_create
+    event_params.merge(user_id: current_api_user.id)
+  end
 
   def set_event
     @event = Event.find(params[:id])

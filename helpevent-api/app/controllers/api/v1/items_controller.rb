@@ -4,7 +4,7 @@ class Api::V1::ItemsController < ApiController
   def index
     item = Item.all.order('updated_at desc')
 
-    return json_error_response('Eventos não encontrado!', :not_found) unless item.present?
+    return json_error_response('Eventos não encontrado!', :not_found, 404) unless item.present?
 
     render json: item, each_serializer: Api::V1::ItemSerializer, status: :ok
   end

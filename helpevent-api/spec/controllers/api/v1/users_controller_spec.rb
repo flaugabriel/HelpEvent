@@ -24,7 +24,7 @@ RSpec.describe Api::V1::UsersController, type: :request do
         get api_users_show_path, params: { id: nil }, headers: valid_headers
         expect(json['messenger']).to eq('Perfil não encontrado!') 
         expect(json['status']).to eq('not_found') 
-        expect(response.status).to eq(200)  
+        expect(response.status).to eq(404)  
       end
     end
   end

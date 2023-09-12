@@ -3,8 +3,8 @@ class ApplicationController < ActionController::API
 
 	before_action :configure_permitted_parameters, if: :devise_controller?
 
-	def json_error_response(messenger, status)
-  	render json: { messenger: messenger, status: status }
+	def json_error_response(messenger, status, code)
+  	render json: { messenger: messenger, status: status }, status: code
   end
 
 	protected

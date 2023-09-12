@@ -2,7 +2,7 @@ class Api::V1::UsersController < ApiController
   before_action :set_user, only: %i[show]
 
   def show
-    return json_error_response('Perfil não encontrado!', :not_found) unless @user.present?
+    return json_error_response('Perfil não encontrado!', :not_found, 404) unless @user.present?
 
     render json: @user, each_serializer: Api::V1::UserSerializer, status: :ok
   end

@@ -22,7 +22,8 @@ O aplicativo de Gerenciamento de Eventos é uma plataforma versátil e intuitiva
   * Publicidade: Incorporar anúncios relevantes para eventos ou produtos relacionados.
   
 #### Lembre-se de que esses são apenas pontos iniciais para ajudá-lo a estruturar sua ideia. À medida que você continuar a desenvolver a concepção do aplicativo, poderá adicionar mais detalhes e refinamentos. Certifique-se de validar sua ideia com testes de usuário e coletar feedback ao longo do processo de desenvolvimento. 
- 
+## Figma Protótipo
+https://www.figma.com/design/TnRcsCOkInfuZBIEzd7VWZ/HelpEvent?node-id=0-1&t=5Ns64fPWPpAMMaFc-1
 ## License  
 [MIT](https://choosealicense.com/licenses/mit/)  
  
